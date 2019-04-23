@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Start Vue!</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+<div class="day-1">
+  뷰 시작하기 첫째날
+</div>
+<div class="about-today">
+  {{ message }}
+</div>
+<div class="about-DOM">
+  <span v-bind:title="message">
+  DOM
+  </span>
+</div>
+<div class="about-NPM">
+  <span v-bind:title="message">
+  NPM
+  </span>
+</div>
+<div class="about-Binding">
+  <span v-bind:title="message">
+  바인딩
+  </span>
+</div>
+<div class="app-3">
+  <p v-if="seen">오늘 공부한 것들</p>
+</div>
+<div class="app-4">
+  <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
+</div>
+
+<div class="day-1">
+  뷰 시작하기 둘째날
+</div>
+<div class="app-5">
+  <div>{{ message }}</div>
+  <button v-on:click="reverseMessage">메시지 뒤집기</button>
+</div>
+<div class="app-6">
+  <div>{{ message }}</div>
+  <input v-model="message">
+</div>
+
+<div class="day-1">
+  뷰 시작하기 셋째날
+</div>
+<div class="body-text">
+  <span class="body-text-bold">attribute 와 property <br/></span>
+  사전적 의미 : 속성, 특 <br/>
+  attribute? : html 문서에서 elements 에 추가적인 정보를 넣을 때 사용되는 요소<br/>
+  <div>
+    <div>div class= ‘my-class’ 가 있을 때</div>
+    <div> div 는 element(요소) / class 는 attribute(속성) / ‘my-class’ 는 class attribute의 value(값) </div>
+  </div>
+  property? : html DOM 안에서 attribute 를 가리키는(혹은 대신하는) 표현 <br/><br/>
+  <span class="body-text-bold">attribute 와 property 의 차이점<br/></span>
+  attribute 는 html document/file 안에서 property 는 html DOM tree안에서 존재. 이는 attribute는 정적으로 변하지 않고 property는 동적으로 그 값이 변할 수 있다는 것을 뜻함.
+</div>
+<div class="app-7">
+  <namecard
+      class="namecard"
+      v-for="item in namecardinfo"
+      v-bind:namecard="item"
+      v-bind:key="item.class">
+  </namecard>
+  <button v-on:click="changeNameinfo">정보바꾸기</button>
+</div>
+
+</body>
+</html>
+
+<style>
+  .day-1 {
+    display: flex;
+    width: 200px;
+    height: 60px;
+    border: 1px solid #ffd524;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease-in-out;
+    margin: 20px 0;
+  }
+  .day-1:hover {
+    background-color: rgba(255,213,36,0.4);
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+  }
+  .about-today{
+    padding: 20px;
+    font-size: 14px;
+  }
+  .about-DOM, .about-NPM, .about-Binding{
+    padding: 5px 20px;
+    font-size: 14px;
+  }
+  .app-3{
+    padding: 0 10px;
+  }
+  .app-4{
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .app-7{
+    width: 300px;
+    height: 160px;
+    border: 1px solid grey;
+    font-size: 13px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+  .namecard{
+    text-align: right;
+  }
+  .body-text {
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .body-text-bold {
+    font-weight: 700;
+  }
+</style>
+
+<script>
+  var aboutToday = new Vue({
+    el: '.about-today',
+    data: {
+      message: '뷰를 처음부터 배워봐요. 진누는 과연 성공할 수 있을까요?'
+    }
+  });
+  var aboutDOM = new Vue({
+    el: '.about-DOM',
+    data: {
+      message: '문서 객체 모델(Document Object Model). HTML 및 XML 문서를 처리하는 API래요. 자바스크립트와 같은 스크립트 언어를 사용하여 문서 내용과 시각적 표현을 수정할 수 있어요.'
+    }
+  });
+  var aboutNPM = new Vue({
+    el: '.about-NPM',
+    data: {
+      message: '노드 패키지 매니저(Node Package Manager)'
+    }
+  });
+  var aboutBinding = new Vue({
+    el: '.about-Binding',
+    data: {
+      message: '속성과 개체 사이 또는 연산과 기호 사이와 같은 연관이다. 이름을 속성에 연관시키는 과정. 바인딩이 일어나는 시간을 바인딩 시간이라고 부른다. 함수 호출과 실제 함수를 연결하는 방법이며, 각종 값들이 확정되어 변경할 수 없는 구속(bind)상태가 되는 것을 의미한다. 정적 바인딩과 동적 바인딩이 있다.'
+    }
+  });
+  var app3 = new Vue({
+    el: '.app-3',
+    data: {
+      seen: true
+    }
+  });
+  var app4 = new Vue({
+    el: ".app-4",
+    data: {
+      todos: [
+        { text: 'DOM에 대해 기억하기' },
+        { text: 'npm에 대해 기억하기' },
+        { text: '바인딩에 대해 기억하기' },
+        { text: 'Vue 엘리먼트가 데이터를 바인딩하는 범위에 대해 기억하기' },
+        { text: 'console 창은 어떻게 켜더라?' },
+        { text: '이 외에 알게된 정보' },
+      ]
+    }
+  });
+  var app5 = new Vue({
+    el: '.app-5',
+    data: {
+      message: '안녕하세요! Vue.js!'
+    },
+    methods: {
+      reverseMessage: function () {
+        this.message = this.message.split('').reverse().join('')
+      }
+    }
+  });
+  var app6 = new Vue ({
+    el: '.app-6',
+    data: {
+      message: 'test Vue!'
+    }
+  });
+  Vue.component('namecard',{
+    props: ['namecard'],
+    template:
+      `<div v-if="namecard.show">
+        {{ namecard.name }}<br/>
+        {{ namecard.phone }}<br/>
+        {{ namecard.company }}
+      </div>`
+  });
+  var app7 = new Vue({
+    el: '.app-7',
+    data: {
+      namecardinfo: [
+        {
+          name: '김진영',
+          phone: '010-3513-2113',
+          company: '아티프렌즈',
+          show: false
+        },
+        {
+          name: '한윤석',
+          phone: '010-1234-5678',
+          company: '아티프렌즈',
+          show: true
+        }
+      ]
+    },
+    methods: {
+      changeNameinfo: function () {
+        if (this.namecardinfo[0].show === false) {
+          this.namecardinfo[0].show = true
+          this.namecardinfo[1].show = false
+        } else {
+          this.namecardinfo[0].show = false
+          this.namecardinfo[1].show = true
+        }
+        // this.namecardinfo[0].show = true
+        // this.namecardinfo[1].show = false
+      }
+    }
+  });
+</script>

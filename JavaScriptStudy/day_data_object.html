@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Practice about Object</title>
+</head>
+<body>
+  <div class="wrap">
+    <div class="head_name">스터디 멤버의 신상정보를 알아봅시다!</div>
+    알고싶은 사람을 눌러보세요.
+    <div class="nametag">
+      <button>한윤석</button>
+      <button>김근환</button>
+      <button class="j_button" >김진영</button>
+      <button>채수정</button>
+    </div>
+    <div class="detail_select">
+      <button>별명</button>
+      <button>키</button>
+      <button>몸무게</button>
+      <button>발사이즈</button>
+      <button>전화번호</button>
+      <button>생일</button>
+      <button>이상형</button>
+      <button>한마디</button>
+    </div>
+    <div class="answer">
+
+    </div>
+  </div>
+</body>
+</html>
+
+<style>
+  .wrap {
+    margin: 50px auto;
+    text-align: center;
+  }
+  .head_name {
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+  }
+  .nametag {
+    padding: 10px;
+  }
+  .detail_select {
+    display: none;
+    padding: 0 0 20px 0;
+  }
+</style>
+
+<script>
+var Jinyeong = {
+  별명: "진누",
+  키: "157cm",
+  몸무게: "검열삭제",
+  발사이즈: "235cm",
+  전화번호: "010-0000-0000",
+  생일: "1924-14-86",
+  이상형: "센스있고 자상한 사람",
+  한마디: "수정님 연애하러갔어~ 나도 연애~"
+}
+
+document.querySelector(".j_button").addEventListener("click", function (event) {
+  var select = document.querySelector(".detail_select");
+  var x = select.style;
+  x.display="block";
+});
+// document.querySelector(".detail_select").querySelector("button").addEventListener("click", function (event) {
+//                                                         첫번째 버튼만 선택했을 때 -> 너무 많이 만들어야 해서 아래 for 문으로
+//   console.log(1);
+// });
+// document.querySelector(".detail_select").querySelector("button ~ button").addEventListener("click", function (event) {
+//                                                         버튼 다음 버튼, css selector 에 대한 조사 필요
+//   console.log(2);
+// });
+var buttons = document.querySelector(".detail_select").querySelectorAll("button");
+
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener("click", function (event) {
+    var answer = Jinyeong[this.textContent];
+    // 진누                         // 별명
+    var a = document.querySelector(".answer");
+    a['textContent'] = answer
+  })
+}
+</script>
+
+<!--근환님과 윤석님이 나를 문제아 취급했따 속상했따 아니 처음부터 모를수도 있찌 속상해서 살겠나아아-->
