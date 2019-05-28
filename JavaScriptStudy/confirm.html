@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>confirm study</title>
+</head>
+<body>
+  <div>
+    <div class="cat"><img src="comingcat.gif" height="287" width="230"/></div>
+    <div class="dog"><img src="comingdog.gif" height="310" width="270"/></div>
+    <div class="content_result"></div>
+  </div>
+<div class="memo">
+  confirm 함수 : 사용자가 텍스트 입력상자 없이 <br/>
+  예 또는 아니오(Boolean)로 질문에 답하도록 만들 때 사용합니다.
+</div>
+</body>
+</html>
+
+<style>
+  .cat, .dog {
+    text-align: center;
+  }
+  .content_result, .memo {
+    margin: 30px auto;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .memo {
+    font-size: 13px;
+  }
+</style>
+
+<script>
+  var likesCats = confirm("고양이를 좋아하세요?");
+  if (likesCats) {
+    document.querySelector('.dog').style.display = 'none';
+    document.querySelector('.content_result').textContent = "🐱고양이를 좋아하는구냥🐱";
+  } else {
+    document.querySelector('.cat').style.display = 'none';
+    document.querySelector('.content_result').textContent = "🐶그럼 강아지는 어때요?🐶";
+  }
+</script>
